@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* 글꼴(SUIT, SIL OFL)을 우리 서버에서 직접 내려 준다. 외부 CDN을 쓰지 않는다 */
+@font-face {
+  font-family: "SUIT Variable";
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/SUIT-Variable.woff2") format("woff2-variations");
+}
+
+/* 뉴닉 느낌의 화면: 흰 바탕, 굵은 검정 제목, 회색 본문, 둥근 모서리. 대표색은 파랑 */
+:root {
+  --background: #ffffff;
+  --foreground: #111213;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "SUIT Variable", -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo",
+    "Malgun Gothic", system-ui, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0b0c0d;
+    --foreground: #f2f3f4;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  word-break: keep-all;
+}
+
+/* 첫 화면의 배가 물결에 흔들리는 느낌. 움직임을 줄이는 설정이면 멈춘다 */
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-6px) rotate(2deg); }
+}
+.ship-bob { animation: bob 3.2s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .ship-bob { animation: none; }
+}
+
+/* 탭을 바꿀 때 내용이 살짝 떠오르며 나타난다. 움직임을 줄이는 설정이면 멈춘다 */
+@keyframes tab-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.tab-panel-in { animation: tab-in 0.28s ease-out; }
+@media (prefers-reduced-motion: reduce) {
+  .tab-panel-in { animation: none; }
+  .tab-indicator { transition: none !important; }
+}
