@@ -29,7 +29,7 @@ AI 해설은 실수할 수 있어요. 공유 전에 원문과 맞는지 한 번 
 - Next.js 16 (App Router) · React 19 · TypeScript · Tailwind CSS 4
 - 뉴스 수집: NAVER API HUB 뉴스 검색
 - 해설 생성: OpenAI (`gpt-4o-mini`), 서버 코드에서만 호출
-- 배포: Vercel
+- 배포: Vercel (서울 지역)
 
 ## 로컬에서 실행하기
 
@@ -71,7 +71,9 @@ node scripts/check-filter.mjs   # scripts/ 안의 검사 스크립트(기간·�
 - API 키는 서버 코드에서만 쓰고 브라우저로 내려보내지 않아요.
 - 기사 페이지는 허용한 4개 매체의 https 주소만 서버가 읽어요.
 - 기사 생성 API는 같은 사이트 화면에서 온 요청만 받고 호출 횟수에 상한이 있어요.
-- 공개 주소는 누구나 열 수 있어서, 실제 기관에서 쓸 때는 접근 보호와 API 사용량 한도 설정이 필요해요.
+- 배포 주소는 Vercel 접근 보호(Vercel Authentication)로 잠겨 있어서, 권한을 준 사람만 열 수 있어요.
+- Vercel 함수는 서울(`icn1`) 지역에서 실행돼요(`vercel.json`).
+- 실제 기관에서 쓸 때는 OpenAI·네이버 API 사용량 한도 설정이 함께 필요해요.
 
 ## 폴더 구조
 
